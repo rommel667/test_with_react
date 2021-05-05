@@ -1,14 +1,9 @@
-import React, { Component } from 'react'
+import React from 'react'
 import './styles.scss'
+import PropTypes from 'prop-types'
 
-class Headline extends Component {
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        const { header, description } = this.props
-
+const Headline = ({ header, description }) =>  {
+    
         if(!header) return null
 
         return (
@@ -17,7 +12,11 @@ class Headline extends Component {
                 <p data-test="description">{description}</p>
             </div>
         )
-    }
+}
+
+Headline.propTypes = {
+    header: PropTypes.string,
+    description: PropTypes.string
 }
 
 export default Headline

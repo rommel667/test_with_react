@@ -1,9 +1,19 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 import Headline from './index'
-import { dataTestFinder } from '../../utils'
+import { dataTestFinder, checkProps } from '../../utils'
 
 describe('Headline Component', () => {
+
+    describe('checking prop-types', () => {
+        it('should not throw a warning', () => {
+            const expectedProps = {
+                header: "Test Header",
+                description: "Test Description"
+            }
+            expect(checkProps(Headline, expectedProps)).toBeUndefined()
+        })
+    })
 
     describe('Have props', () => {
         let wrapper;
@@ -13,7 +23,6 @@ describe('Headline Component', () => {
         }
         beforeEach(() => {
             wrapper = shallow(<Headline {...props} />)
-            console.log(wrapper.debug());
         })
         it('should render without errors', ()=> {
             expect(dataTestFinder('headlineComponent', wrapper)).toBe(1)
@@ -30,14 +39,10 @@ describe('Headline Component', () => {
         let wrapper;
         beforeEach(() => {
             wrapper = shallow(<Headline />)
-            console.log(wrapper.debug());
         })
         it('should not render', () => {
             expect(dataTestFinder('headlineComponent', wrapper)).toBe(0)
         })
     })
-
-
-
    
 })
